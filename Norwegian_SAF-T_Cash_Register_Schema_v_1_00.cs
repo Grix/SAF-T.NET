@@ -28,17 +28,25 @@ namespace Softcash.SAFT.Auditfile
         [XmlElement(DataType = "date")]
         public DateTime endDate;
         public Currencycode curCode;
-        [XmlElement(DataType = "date")]
-        public DateTime dateCreated;
 
         [XmlIgnore()]
-        public DateTime timeCreated;
+        public DateTime dateTimeCreated;
+
         [XmlElement(ElementName = "timeCreated")]
         public string _timeCreated
         {
             get
             {
-                return timeCreated.ToString("HH:mm:ss");
+                return dateTimeCreated.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "dateCreated")]
+        public string _dateCreated
+        {
+            get
+            {
+                return dateTimeCreated.ToString("yyyy-MM-dd");
             }
         }
 
@@ -180,22 +188,47 @@ namespace Softcash.SAFT.Auditfile
         [XmlElement(DataType = "nonNegativeInteger")]
         public string periodNumber;
         public string periodDesc;
-        [XmlElement(DataType = "date")]
-        public DateTime startDatePeriod;
         [XmlIgnore()]
-        public bool startDatePeriodSpecified;
-        [XmlElement(DataType = "time")]
-        public DateTime startTimePeriod;
+        public DateTime startDateTimePeriod;
+
+        [XmlElement(ElementName = "startTimePeriod")]
+        public string startTimePeriod
+        {
+            get
+            {
+                return startDateTimePeriod.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "startDatePeriod")]
+        public string startDatePeriod
+        {
+            get
+            {
+                return startDateTimePeriod.ToString("yyyy-MM-dd");
+            }
+        }
+
         [XmlIgnore()]
-        public bool startTimePeriodSpecified;
-        [XmlElement(DataType = "date")]
-        public DateTime endDatePeriod;
-        [XmlIgnore()]
-        public bool endDatePeriodSpecified;
-        [XmlElement(DataType = "time")]
-        public DateTime endTimePeriod;
-        [XmlIgnore()]
-        public bool endTimePeriodSpecified;
+        public DateTime endDateTimePeriod;
+
+        [XmlElement(ElementName = "endTimePeriod")]
+        public string endTimePeriod
+        {
+            get
+            {
+                return endDateTimePeriod.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "endDatePeriod")]
+        public string endDatePeriod
+        {
+            get
+            {
+                return endDateTimePeriod.ToString("yyyy-MM-dd");
+            }
+        }
     }
 
     [Serializable()]
@@ -203,10 +236,29 @@ namespace Softcash.SAFT.Auditfile
     public partial class Employee
     {
         public string empID;
-        [XmlElement(DataType = "date")]
-        public DateTime dateOfEntry;
-        [XmlElement(DataType = "time")]
-        public DateTime timeOfEntry;
+        [XmlIgnore()]
+        public DateTime dateTimeOfEntry;
+
+        [XmlElement(ElementName = "timeOfEntry")]
+        public string timeOfEntry
+        {
+            get
+            {
+                return dateTimeOfEntry.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "dateOfEntry")]
+        public string dateOfEntry
+        {
+            get
+            {
+                return dateTimeOfEntry.ToString("yyyy-MM-dd");
+            }
+        }
+
+
+
         public string firstName;
         public string surName;
         [XmlElement("employeeRole")]
@@ -272,10 +324,27 @@ namespace Softcash.SAFT.Auditfile
         public string eventType;
         public string transID;
         public string empID;
-        [XmlElement(DataType = "date")]
-        public DateTime eventDate;
-        [XmlElement(DataType = "time")]
-        public DateTime eventTime;
+        [XmlIgnore()]
+        public DateTime eventDateTime;
+
+        [XmlElement(ElementName = "eventTime")]
+        public string eventTime
+        {
+            get
+            {
+                return eventDateTime.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "eventDate")]
+        public string eventDate
+        {
+            get
+            {
+                return eventDateTime.ToString("yyyy-MM-dd");
+            }
+        }
+
         public string eventText;
         public EventReport eventReport;
     }
@@ -288,10 +357,28 @@ namespace Softcash.SAFT.Auditfile
         public ReportType reportType;
         public string companyIdent;
         public string companyName;
-        [XmlElement(DataType = "date")]
-        public DateTime reportDate;
-        [XmlElement(DataType = "time")]
-        public DateTime reportTime;
+
+        [XmlIgnore()]
+        public DateTime reportDateTime;
+
+        [XmlElement(ElementName = "reportTime")]
+        public string reportTime
+        {
+            get
+            {
+                return reportDateTime.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "reportDate")]
+        public string reportDate
+        {
+            get
+            {
+                return reportDateTime.ToString("yyyy-MM-dd");
+            }
+        }
+
         public string registerID;
         public ReportTotalCashSales reportTotalCashSales;
         [XmlArrayItem("reportArtGroup", IsNullable = false)]
@@ -551,18 +638,50 @@ namespace Softcash.SAFT.Auditfile
         public string custSupID;
         [XmlElement(DataType = "nonNegativeInteger")]
         public string periodNumber;
-        [XmlElement(DataType = "date")]
-        public DateTime transDate;
-        [XmlElement(DataType = "time")]
-        public DateTime transTime;
-        [XmlElement(DataType = "date")]
-        public DateTime bookDate;
+
         [XmlIgnore()]
-        public bool bookDateSpecified;
-        [XmlElement(DataType = "time")]
-        public DateTime bookTime;
+        public DateTime transDateTime;
+
+        [XmlElement(ElementName = "transTime")]
+        public string transTime
+        {
+            get
+            {
+                return transDateTime.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "transDate")]
+        public string transDate
+        {
+            get
+            {
+                return transDateTime.ToString("yyyy-MM-dd");
+            }
+        }
+
+
         [XmlIgnore()]
-        public bool bookTimeSpecified;
+        public DateTime bookDateTime;
+
+        [XmlElement(ElementName = "bookTime")]
+        public string bookTime
+        {
+            get
+            {
+                return bookDateTime.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "bookDate")]
+        public string bookDate
+        {
+            get
+            {
+                return bookDateTime.ToString("yyyy-MM-dd");
+            }
+        }
+
         public string invoiceID;
         public string refID;
         public string desc;
@@ -624,14 +743,29 @@ namespace Softcash.SAFT.Auditfile
         public string empID;
         public string lineAmntInAccID;
         public string cashTransLineDescr;
-        [XmlElement(DataType = "date")]
-        public DateTime lineDate;
+
         [XmlIgnore()]
-        public bool lineDateSpecified;
-        [XmlElement(DataType = "time")]
-        public DateTime lineTime;
-        [XmlIgnore()]
-        public bool lineTimeSpecified;
+        public DateTime lineDateTime;
+
+        [XmlElement(ElementName = "lineTime")]
+        public string lineTime
+        {
+            get
+            {
+                return lineDateTime.ToString("HH:mm:ss");
+            }
+        }
+
+        [XmlElement(ElementName = "lineDate")]
+        public string lineDate
+        {
+            get
+            {
+                return lineDateTime.ToString("yyyy-MM-dd");
+            }
+        }
+
+
         public Vat vat;
         [XmlElement("savings")]
         public Savings[] savings;
