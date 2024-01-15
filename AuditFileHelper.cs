@@ -19,12 +19,12 @@ namespace Softcash.SAFT
         /// </summary>
         /// <param name="filePath">The path where the file will be read</param>
         /// <returns></returns>
-        public static Auditfile.auditfile Deserialize(string filePath)
+        public static Auditfile.AuditFile Deserialize(string filePath)
         {
             using (var reader = new StreamReader(filePath))
             {
-                XmlSerializer xs = new XmlSerializer(typeof(Auditfile.auditfile));
-                return (Auditfile.auditfile)xs.Deserialize(reader);
+                XmlSerializer xs = new XmlSerializer(typeof(Auditfile.AuditFile));
+                return (Auditfile.AuditFile)xs.Deserialize(reader);
             }
         }
 
@@ -34,10 +34,10 @@ namespace Softcash.SAFT
         /// <param name="auditfile">The auditfile object to serialize</param>
         /// <param name="filePath">The path where the file will be written</param>
         /// <param name="compression">Optional: When true file will be compressed into Zip file. Default: false</param>
-        public static void Serialize(Auditfile.auditfile auditfile, string filePath, bool compression = false)
+        public static void Serialize(Auditfile.AuditFile auditfile, string filePath, bool compression = false)
         {
             var xmlFile = new FileInfo(filePath);
-            var xml = new XmlSerializer(typeof(Auditfile.auditfile));
+            var xml = new XmlSerializer(typeof(Auditfile.AuditFile));
             if (compression)
             {
                 var zipFile = new FileInfo("SAF-T Export_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".zip");
